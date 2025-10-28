@@ -1,7 +1,20 @@
 #!/bin/bash
 
 check_password_strength() {
+
+    output_file = "tracker.txt"
+    read -p "Enter your password: " password
+    echo 
+
+    score=0
+
+    log() {
+        echo "$1" | tee -a $output_file
+    }
     password=$1
+
+    log "------------------------------------------"
+    log "Password check at: $(date)"
 
     if [ ${#password} -lt 8 ]; then
         echo "Password is too short. Must be at least 8 characters long."
